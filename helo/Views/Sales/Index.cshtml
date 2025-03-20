@@ -1,0 +1,32 @@
+﻿<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model IEnumerable<helo.Models.Sales.SalesProduct>
+
+<h2>Sales List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Quantity Sold</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Product.ProductName</td>
+                <td>@item.QuantitySold</td>
+                <td>@item.TotalPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "GetRestockingSuggestion";
+}
+
+<h2>AI-Based Restocking Prediction</h2>
+
+<div class="alert alert-info">
+    <strong>AI Suggestion:</strong> @ViewBag.AIResponse
+</div>
+
+<a href="@Url.Action("Index", "Products")" class="btn btn-primary">Back</a>

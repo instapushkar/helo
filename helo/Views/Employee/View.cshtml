@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "View";
+}
+
+@model helo.Models.Entities.UpdateEmployeeViewModel
+
+<h2>Edit Employee</h2>
+<form method="post" asp-action="View" asp-controller="Employee" class="mt-5">
+    <input type="hidden" asp-for="id" />
+
+    @* <div class="mb-3"> *@
+    @*     <label for="" class="form-label">Id</label> *@
+    @*     <input type="text" class="form-control" asp-for="id" readonly> *@
+    @* </div> *@
+    <div class="mb-3">
+        <label for="" class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="Name">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Department</label>
+        <input type="text" class="form-control" asp-for="Department">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Email</label>
+        <input type="text" class="form-control" asp-for="Email">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Date Of Birth</label>
+        <input type="date" class="form-control" asp-for="DateofBirth">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-danger" asp-action="Delete"
+             asp-controller="Employee"> 
+       Delete 
+    </button>
+
+</form>
+@* <form method="post" asp-action="Delete" asp-controller="Employee">
+@*     <input type="hidden" asp-for="id" /> *@
+@*     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"> *@
+@*         Delete *@
+@*     </button> *@
+@* </form> *@
+

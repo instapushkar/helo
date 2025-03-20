@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "GetMostBoughtProduct";
+}
+@model helo.Models.Sales.MostBoughtProductViewModel
+
+<h2>Most Bought Product</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity Sold</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.ProductName</td>
+            <td>@Model.QuantitySold</td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="@Url.Action("Index", "Products")" class="btn btn-primary">Back to Products</a>
+

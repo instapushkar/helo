@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@model helo.Models.Product.ProductData
+
+
+<h2>Delete Product</h2>
+@* <h4>Are you sure you want to delete this product?</h4> *@
+
+<div>
+    <h5>@Model.ProductName</h5>
+    <p><strong>Quantity:</strong> @Model.Quantity</p>
+    <p><strong>Price:</strong> $@Model.Price</p>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+

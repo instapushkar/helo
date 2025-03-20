@@ -1,0 +1,57 @@
+﻿@model helo.Models.Sales.SalesProduct
+
+<h2>Confirm Purchase</h2>
+
+<form asp-action="Buy" method="post">
+    <input type="hidden" asp-for="ProductId" />
+
+    <table class="table">
+        <tr>
+            <th>Product Name</th>
+            <td>@Model.Product.ProductName</td>
+        </tr>
+        <tr>
+            <th>Quantity Available</th>
+            <td id="availableQuantity">@Model.Product.Quantity</td>
+        </tr>
+        <tr>
+            <th>Quantity to Buy</th>
+            <td>
+                <input type="number" id="quantityToBuy" name="QuantityToBuy" min="1" max="@Model.Product.Quantity" required class="form-control" />
+                <small id="quantityWarning" class="text-danger" style="display: none;">Cannot exceed available stock.</small>
+            </td>
+        </tr>
+        <tr>
+            <th>Price Per Unit</th>
+            <td id="pricePerUnit">@Model.Product.Price</td>
+        </tr>
+        <tr>
+            <th>Total Price</th>
+            <td>
+                <input type="text" id="totalPrice" readonly class="form-control" />
+            </td>
+        </tr>
+    </table>
+
+    <button type="submit" id="buyButton" class="btn btn-success">Buy</button>
+</form>
+
+<script>
+    document.getElementById("quantityToBuy").addEventListener("input", function() {
+        let quantity = parseInt(this.value) || 0;
+        let availableQuantity = parseInt(document.getElementById("availableQuantity").innerText);
+        let pricePerUnit = parseFloat(document.getElementById("pricePerUnit").innerText);
+        let warningMessage = document.getElementById("quantityWarning");
+        let buyButton = document.getElementById("buyButton");
+
+        if (quantity > availableQuantity) {
+            this.value = availableQuantity;
+            warningMessage.style.display = "inline"; 
+        } else {
+            warningMessage.style.display = "none"; 
+        }
+
+        let totalPrice = quantity * pricePerUnit;
+        document.getElementById("totalPrice").value = totalPrice.toFixed(2);
+    });
+</script>

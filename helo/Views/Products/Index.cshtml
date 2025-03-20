@@ -1,0 +1,72 @@
+﻿<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model IEnumerable<helo.Models.Product.ProductData>
+
+<h2>Product List</h2>
+
+<div class="d-flex justify-content-between">
+    <a href="@Url.Action("Create", "Products")" class="btn btn-primary">Add Product</a>
+    <a href="@Url.Action("GetMostBoughtProduct", "Sales")" class="btn btn-info">Most Bought Product</a>
+    <a href="@Url.Action("Index", "Sales")" class="btn btn-success">View Sales</a>
+</div>
+<table class="table table-bordered" id="productTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Actions</th> 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.ProductName</td>
+                <td>
+                    @if (item.Quantity < 5)
+                    {
+                        <span style="color: red; font-weight: bold;">
+                            ⚠ @item.Quantity (Low Stock)
+                        </span>
+                    }
+                    else
+                    {
+                        @item.Quantity
+                    }
+                </td>
+                <td>@item.Price</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                    <a asp-controller="Sales" asp-action="Buy" asp-route-id="@item.Id" class="btn btn-success btn-sm">Buy</a>
+
+                </td>
+            </tr>
+          
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#productTable').DataTable({
+            "paging": true,       
+            "searching": true,    
+            "ordering": true,     
+            "info": true          
+        });
+    });
+</script>
+
+
+
