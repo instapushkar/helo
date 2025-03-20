@@ -17,32 +17,6 @@ namespace helo.Services
             _apiKey = configuration["APIKeys:Gemini"];
         }
 
-        //public async Task<string> GetRestockingPrediction(string salesData)
-        //{
-        //    var requestBody = new
-        //    {
-        //        prompt = $"Analyze this sales data and predict restocking needs: {salesData}",
-        //        max_tokens = 100
-        //    };
-
-        //    var jsonRequest = JsonSerializer.Serialize(requestBody);
-        //    var content = new StringContent(jsonRequest, System.Text.Encoding.UTF8, "application/json");
-
-        //    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
-
-        //    var response = await _httpClient.PostAsync("https://api.openai.com/v1/completions", content);
-
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var jsonResponse = await response.Content.ReadAsStringAsync();
-        //        var result = JsonSerializer.Deserialize<JsonElement>(jsonResponse);
-        //        return result.GetProperty("choices")[0].GetProperty("text").GetString();
-        //    }
-        //    else
-        //    {
-        //        return "AI response failed.";
-        //    }
-        //}
         public async Task<string> GetRestockingPrediction(string salesData)
         {
             var requestBody = new

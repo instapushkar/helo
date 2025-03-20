@@ -39,5 +39,6 @@ namespace helo.Models.CustomLogin
         [MaxLength(20, ErrorMessage = "Max 20 characters allowed")]
 
         public string Password { get; set; }
+
     }
 }

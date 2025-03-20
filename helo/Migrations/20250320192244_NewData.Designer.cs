@@ -12,8 +12,8 @@ using helo.Data;
 namespace helo.Migrations
 {
     [DbContext(typeof(AddDbcontext))]
-    [Migration("20250320051202_ProductData")]
-    partial class ProductData
+    [Migration("20250320192244_NewData")]
+    partial class NewData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,9 +113,65 @@ namespace helo.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("ProductDatas");
+                });
+
+            modelBuilder.Entity("helo.Models.Sales.SalesProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuantitySold")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("SalesProducts");
+                });
+
+            modelBuilder.Entity("helo.Models.Product.ProductData", b =>
+                {
+                    b.HasOne("helo.Models.CustomLogin.UserAccount", "User")
+                        .WithMany("Products")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("helo.Models.Sales.SalesProduct", b =>
+                {
+                    b.HasOne("helo.Models.Product.ProductData", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("helo.Models.CustomLogin.UserAccount", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

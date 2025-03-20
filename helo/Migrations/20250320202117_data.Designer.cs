@@ -12,8 +12,8 @@ using helo.Data;
 namespace helo.Migrations
 {
     [DbContext(typeof(AddDbcontext))]
-    [Migration("20250320070752_salesdata")]
-    partial class salesdata
+    [Migration("20250320202117_data")]
+    partial class data
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

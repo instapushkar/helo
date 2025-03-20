@@ -2,6 +2,7 @@
 using helo.Models.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace helo.Controllers
 {
@@ -14,9 +15,9 @@ namespace helo.Controllers
             _context = context;
         }
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var products = _context.ProductDatas.ToList();
+            var products = await _context.ProductDatas.ToListAsync();
             return View(products);
         }
 
@@ -27,7 +28,6 @@ namespace helo.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductData product)
         {
             if (ModelState.IsValid)
@@ -38,6 +38,9 @@ namespace helo.Controllers
             }
             return View(product);
         }
+
+
+
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
@@ -94,7 +97,7 @@ namespace helo.Controllers
 
             return RedirectToAction("Index"); 
         }
-
+       
 
     }
 }

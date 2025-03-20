@@ -19,9 +19,10 @@ namespace helo.Data
         {
             modelBuilder.Entity<SalesProduct>()
                 .HasOne(s => s.Product)
-                .WithMany() // If a product can be sold multiple times
+                .WithMany()
                 .HasForeignKey(s => s.ProductId)
-                .OnDelete(DeleteBehavior.Cascade); // Deletes sales if the product is deleted
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
 
     }

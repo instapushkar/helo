@@ -46,7 +46,7 @@ namespace helo.Controllers
                 }
                 catch (Exception ex )
                 {
-                    ModelState.AddModelError("", "Please enter unique Email or Pasword");
+                    ModelState.AddModelError("", "Please enter unique Email or Password");
                 }
 
                 return View();
@@ -93,9 +93,9 @@ namespace helo.Controllers
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
 
+
+
             
-         
-            // Remove all cookies
             foreach (var cookie in Request.Cookies.Keys)
             {
                 Response.Cookies.Delete(cookie);

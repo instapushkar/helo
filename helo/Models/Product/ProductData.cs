@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using helo.Models.CustomLogin;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace helo.Models.Product
 {
@@ -15,5 +17,7 @@ namespace helo.Models.Product
         [Required]
 
         public double Price { get; set; }
+
+       
     }
 }
